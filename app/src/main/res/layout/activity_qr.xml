@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="55dp"
+        android:padding="10dp">
+
+        <Button
+            android:text="Scanear QR"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:onClick="onClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/qr_scan"
+            android:textColor="@color/white"
+            android:padding="20dp"
+            android:textSize="18dp"
+            android:background="@drawable/edit_button"/>
+
+        <View
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/blueSky"/>
+
+        <TextView
+            android:padding="13dp"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingresar Código de Usuario: "
+            android:textColor="@color/blueSky"
+            android:textSize="18dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:textColor="@color/blueSky"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:textSize="20dp" />
+
+        <Button
+            android:text="Ingresar Usuario"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:onClick="addUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add_user"
+            android:textColor="@color/white"
+            android:padding="20dp"
+            android:textSize="15dp"
+            android:background="@drawable/edit_button"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
