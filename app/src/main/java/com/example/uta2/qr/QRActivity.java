@@ -12,7 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -33,8 +33,9 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
     private ZXingScannerView mScannerView;
     Activity activity;
     MediaPlayer mp;
-    TextView scan_text;
+    EditText identification;
     String my_result;
+    boolean qr = false;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         activity = (Activity) i.getSerializableExtra("Activity");
 
         Toast.makeText(getApplicationContext(),activity.getId() + "", Toast.LENGTH_LONG).show();
+
+        identification = (EditText) findViewById(R.id.identification);
 
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -59,6 +62,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         setContentView(mScannerView);
         mScannerView.setResultHandler(this);
         mScannerView.startCamera();
+        qr = true;
     }
 
     @Override
@@ -85,7 +89,8 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
     }
 
     public void addUser(View view) {
-        Toast.makeText(this, "Realiza una petición", Toast.LENGTH_LONG).show();
+        sendUser(identification.getText()+"");
+        identification.setText("");
     }
 
     public void sendUser(String qrToken){
@@ -141,9 +146,12 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
                 "Aceptar",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mScannerView.removeAllViews(); //<- here remove all the views, it will make an Activity having no View
-                        mScannerView.stopCamera(); //<- then stop the camera
-                        finish();
+                        if(qr){
+                            qr = false;
+                            mScannerView.removeAllViews(); //<- here remove all the views, it will make an Activity having no View
+                            mScannerView.stopCamera(); //<- then stop the camera
+                            finish();
+                        }
                     }
                 });
         AlertDialog alertDialog = builder.create();
