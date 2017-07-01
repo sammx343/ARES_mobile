@@ -4,13 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/activity_title"
+        android:text="Título"
+        android:textColor="@color/blueSky"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="30dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_marginTop="55dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:padding="10dp">
+
 
         <Button
             android:text="Scanear QR"

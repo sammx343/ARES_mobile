@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -35,6 +36,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
     MediaPlayer mp;
     EditText identification;
     String my_result;
+    TextView title;
     boolean qr = false;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -42,12 +44,15 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr);
 
+        title = (TextView) findViewById(R.id.activity_title);
+
         Intent i = getIntent();
         activity = (Activity) i.getSerializableExtra("Activity");
 
         Toast.makeText(getApplicationContext(),activity.getId() + "", Toast.LENGTH_LONG).show();
 
         identification = (EditText) findViewById(R.id.identification);
+        title.setText(activity.getName());
 
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
