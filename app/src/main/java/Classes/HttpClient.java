@@ -31,7 +31,7 @@ public class HttpClient {
 
     JSONObject j;
 
-    String[] base = {"http://ares-sammx343.c9users.io:8080/api/v1",
+    String[] base = {"https://ares-sammx343.c9users.io/api/v1",
             "http://201.150.96.82:3001/api/v1/"};
     String URL = base[0];
 

@@ -109,7 +109,7 @@ public class Login extends AppCompatActivity {
             for(int i=0; i < events_json.length(); i++){
                 JSONObject event = (JSONObject) events_json.get(i);
                 String name = event.getString("name");
-
+                System.out.println("ESTEEEE .......");
                 String initialDate = formatDate(event.getString("initial_date"));
                 String finalDate = formatDate(event.getString("final_date"));
 
@@ -119,8 +119,10 @@ public class Login extends AppCompatActivity {
                 JSONArray activities_json = event.getJSONArray("activities");;
                 ArrayList<Activity> activities = new ArrayList<>();
                 for(int j=0; j < activities_json.length(); j++){
+
                     JSONObject activity  = (JSONObject) activities_json.get(j);
                     int id = activity.getInt("id");
+                    System.out.println("este es el id de la actividad " + id);
                     String nameAct = activity.getString("name");
                     String description = activity.getString("description");
 
@@ -128,16 +130,21 @@ public class Login extends AppCompatActivity {
                     String finalTime = formatDate(activity.getString("final_time"));
 
                     int quota = activity.getInt("quota");
-                    int currentQuota = activity.getInt("current_quota");
+                    int currentQuota = 0;
+                    try{
+                        currentQuota = (activity.getInt("current_quota"));
+                    }catch (Exception e){
+
+                    }
                     String place = activity.getString("place");
                     Activity act = new Activity(id, nameAct, description, currentQuota, quota, place, initialTime, finalTime, j );
-
+                    System.out.println(act.getInvitedNumber() + " " + act.getHourDateEnd());
+                    System.out.println("ESCRIBEEEEEEEEEE!!!!!!!!!!!!");
                     activities.add(act);
                 }
                 Event eventJ = new Event(name, initialDate, finalDate, logo, url, activities, i);
                 events.add(eventJ);
             }
-
             Intent intent = new Intent(getApplicationContext(), EventsList.class);
             intent.putExtra("Events", events);
             startActivity(intent);
@@ -148,13 +155,17 @@ public class Login extends AppCompatActivity {
     }
 
     String formatDate(String my_date){
+        System.out.println(my_date);
         Date date = null;
+        String newString = "Fecha No Asignada";
         try{
             date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(my_date);
+            newString = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
         } catch (ParseException e){
             e.printStackTrace();
+        } catch (NullPointerException e){
+            e.printStackTrace();
         }
-        String newString = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
         System.out.println(newString);
         return newString;
     }

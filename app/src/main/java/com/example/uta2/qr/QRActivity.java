@@ -124,7 +124,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
             }
 
             public void onFailure(int statusCode, Header[] headers, String message, Throwable e){
-                Toast.makeText(getApplicationContext(), "No hay servidor", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Problema de servidor o usuario no registrado", Toast.LENGTH_LONG).show();
             }
 
             public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject response){
@@ -135,7 +135,7 @@ public class QRActivity extends AppCompatActivity implements ZXingScannerView.Re
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 } catch (NullPointerException e2){
-                    Toast.makeText(getApplicationContext(), "Hubo un error, intenta de nuevo en unos segundos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Problema de servidor o usuario no registrado", Toast.LENGTH_LONG).show();
                 }
             }
         });
